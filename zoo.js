@@ -2,7 +2,6 @@
 
 use zoologico;
 
-
 /* -------------------- 2. FIND -------------------- */
 
 db.animais.find({ tipo_animal:'Leão' });
@@ -26,19 +25,44 @@ db.animais.aggregate(
 
 /* -------------------- 6. PROJECT -------------------- */
 
-db.animais.aggregate( [ { $project : { descricao : { habitat: 1 } , idade : 1 } } ] )
+db.animais.aggregate( [ { $project : { descricao : { habitat: 1 } , idade : 1 } } ] );
 
 /* -------------------- 7. GTE -------------------- */
 
+// GTE ==  greater than or equal == >=
+// buscando animais com comprimento maior ou igual a 100 cm
+
+db.animais.find( { comprimento_cm: { $gte: 100 } } )
+
 /* -------------------- 8. GROUP -------------------- */
+
+// agrupando os ingressos pelo seu tipo
+
+db.ingressos.aggregate( [ { $group: { _id: '$tipo', count: { $sum: 1 } } } ] );
 
 /* -------------------- 9. SUM -------------------- */
 
+// somando o peso de todos os animais
+
+db.animais.aggregate([{ $group: { _id: null, count: { $sum: '$peso_kg' }}}]);
+
 /* -------------------- 10. COUNT -------------------- */
+
+// somando os salário de todos os funcionários
+
+db.funcionarios.aggregate([{ $group: { _id: null, count: { $sum: '$salario' }}}]);
 
 /* -------------------- 11. MAX -------------------- */
 
+// obtendo o maior salário de todos os funcionários
+
+db.funcionarios.aggregate([{ $group: { _id: null, count: { $max: '$salario' }}}]);
+
 /* -------------------- 12. AVG -------------------- */
+
+// obtendo a média do salário dos funcionários
+
+db.funcionarios.aggregate([{ $group: { _id: null, count: { $avg: '$salario' }}}]);
 
 /* -------------------- 13. EXISTS -------------------- */
 

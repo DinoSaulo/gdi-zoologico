@@ -66,11 +66,36 @@ db.funcionarios.aggregate([{ $group: { _id: null, count: { $avg: '$salario' }}}]
 
 /* -------------------- 13. EXISTS -------------------- */
 
+// retornando funcionários que tem o tipo do cargo definido
+
+db.funcionarios.find( { tipo_cargo: { $exists: true }})
+
 /* -------------------- 14. SORT -------------------- */
+
+// ordenando os funcionários pelo salário por ordem decrescente 
+
+db.funcionarios.aggregate(
+    [
+      { $sort : { salario : -1 } }
+    ]
+ )
 
 /* -------------------- 15. LIMIT -------------------- */
 
+// obtendo os três animais mais pesados
+
+db.animais.aggregate(
+    [
+      { $sort : { peso_kg : -1 } },
+      { $limit : 3 }
+    ]
+);
+
 /* -------------------- 16. $WHERE -------------------- */
+
+// obtendo animais que tem a altura maior que o comprimento (todos os bichinhos)
+
+db.animais.find( { $where: "this.altura_cm > this.comprimento_cm" } );
 
 /* -------------------- 17. MAPREDUCE -------------------- */
 

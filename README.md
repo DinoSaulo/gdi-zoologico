@@ -15,10 +15,10 @@ Atividade da disciplina Gerenciamento de dados e Informação - 2019.2 - Grupo 1
 | 10        | COUNT     | ✅    |
 | 11        | MAX       | ✅    |
 | 12        | AVG       | ✅    |
-| 13        | EXISTS    | ❌    |
-| 14        | SORT      | ❌    |
-| 15        | LIMIT     | ❌    |
-| 16        | $WHERE    | ❌    |
+| 13        | EXISTS    | ✅    |
+| 14        | SORT      | ✅    |
+| 15        | LIMIT     | ✅    |
+| 16        | $WHERE    | ✅    |
 | 17        | MAPREDUCE | ❌    |
 | 18        | FUNCTION  | ❌    |
 | 19        | PRETTY    | ❌    |

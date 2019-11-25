@@ -162,6 +162,17 @@ db.funcionarios.insert({
     endereco: ObjectId("5ddb8b5e25e6201bc4ee387c")
 });
 
+db.funcionarios.insert({ 
+    nome: "Fred Freitas", 
+    funcao: 'Segurança', 
+    cpf: '324.823.345-74', 
+    sexo: 'M', 
+    data_nascimento: ISODate("1990-01-11T11:05:09.736Z"), 
+    tipo_cargo: 'terceirizado',
+    ctps: '324.78960.64-5',
+    endereco: ObjectId("5ddb8b5e25e6201bc4ee387c")
+});
+
 // inserindo clientes
 
 db.clientes.insert({ 
@@ -271,7 +282,7 @@ db.enderecos.insert({
 db.enderecos.insert({ 
     logradouro: '1ª Travessa da Amizade', 
     numero: '78',
-    complemento: '', 
+    complemento: null, 
     bairro: 'Santo Amaro',
     cidade: 'Recife',
     estado: 'PE',
@@ -291,7 +302,7 @@ db.enderecos.insert({
 db.enderecos.insert({ 
     logradouro: 'Avenida Betânia', 
     numero: '234',
-    complemento: '', 
+    complemento: null, 
     bairro: 'Vera Cruz',
     cidade: 'Camaragibe',
     estado: 'PE',

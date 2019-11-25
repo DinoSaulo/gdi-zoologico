@@ -6,9 +6,9 @@ Atividade da disciplina Gerenciamento de dados e Informação - 2019.2 - Grupo 1
 | 1         | USE       | ✅    |
 | 2         | FIND      | ✅    |
 | 3         | SIZE      | ❌    |
-| 4         | AGGREGATE | ❌    |
-| 5         | MATCH     | ❌    |
-| 6         | PROJECT   | ❌    |
+| 4         | AGGREGATE | ✅    |
+| 5         | MATCH     | ✅    |
+| 6         | PROJECT   | ✅    |
 | 7         | GTE       | ❌    |
 | 8         | GROUP     | ❌    |
 | 9         | SUM       | ❌    |

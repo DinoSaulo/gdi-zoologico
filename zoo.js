@@ -16,13 +16,17 @@ db.animais.find({ descricao: { $size: 4 } }); // não tá pegando
 
 /* -------------------- 4. AGGREGATE -------------------- */
 
-db.animais.aggregate({
-    // completar
-});
+db.enderecos.aggregate([{$group : {_id : "$cidade", num_cidade : {$sum : 1}}}])
 
 /* -------------------- 5. MATCH -------------------- */
 
+db.animais.aggregate(
+    [{ $match : { tipo_animal:'Pinguim' } }]
+);
+
 /* -------------------- 6. PROJECT -------------------- */
+
+db.animais.aggregate( [ { $project : { descricao : { habitat: 1 } , idade : 1 } } ] )
 
 /* -------------------- 7. GTE -------------------- */
 

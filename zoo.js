@@ -5,9 +5,20 @@ use zoologico;
 
 /* -------------------- 2. FIND -------------------- */
 
+db.animais.find({ tipo_animal:'Leão' });
+db.funcionarios.find({ funcao: 'Biólogo' });
+db.clientes.find({ data_nascimento: ISODate("1964-10-02T01:35:09.736Z") });
+db.enderecos.find({ cidade: 'Pombos' });
+
 /* -------------------- 3. SIZE -------------------- */
 
+db.animais.find({ descricao: { $size: 4 } }); // não tá pegando
+
 /* -------------------- 4. AGGREGATE -------------------- */
+
+db.animais.aggregate({
+    // completar
+});
 
 /* -------------------- 5. MATCH -------------------- */
 

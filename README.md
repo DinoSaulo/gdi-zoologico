@@ -22,9 +22,9 @@ Atividade da disciplina Gerenciamento de dados e Informação - 2019.2 - Grupo 1
 | 17        | MAPREDUCE | ❌    |
 | 18        | FUNCTION  | ❌    |
 | 19        | PRETTY    | ✅    |
-| 20        | ALL       | ❌    |
-| 21        | SET       | ❌    |
-| 22        | TEXT      | ❌    |
+| 20        | ALL       | ✅    |
+| 21        | SET       | ✅    |
+| 22        | TEXT      | ✅    |
 | 23        | SEARCH    | ❌    |
 | 24        | FILTER    | ❌    |
 | 25        | UPDATE    | ✅    |

@@ -138,8 +138,8 @@ db.clientes.update(
 
 // não está funcionando
 
-db.clientes.createIndex( { subject: "email" } )
-db.clientes.find( { $text: { $search: "mal3@cin.ufpe.br" } } )
+db.clientes.createIndex( { email: "text" } )
+db.clientes.find( { $text: { $search: "mal3" } } )
 
 /* -------------------- 23. SEARCH -------------------- */
 

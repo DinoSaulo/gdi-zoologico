@@ -6,7 +6,7 @@
 //use zoologico;
 
 // criando as collections
-db = db.getSiblingDB("Zoologico");
+//db = db.getSiblingDB("Zoologico");
 db.createCollection('animais');
 db.createCollection('funcionarios');
 db.createCollection('clientes');

@@ -6,11 +6,12 @@
 //use zoologico;
 
 // criando as collections
-db.createCollection('animais') ;
-db.createCollection('funcionarios') ;
-db.createCollection('clientes') ;
-db.createCollection('ingressos') ;
-db.createCollection('enderecos') ;
+db = db.getSiblingDB("Zoologico");
+db.createCollection('animais');
+db.createCollection('funcionarios');
+db.createCollection('clientes');
+db.createCollection('ingressos');
+db.createCollection('endereco');
 
 // inserindo animais
 

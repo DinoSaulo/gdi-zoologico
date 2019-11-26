@@ -11,7 +11,7 @@ db.enderecos.find({ cidade: 'Pombos' });
 
 /* -------------------- 3. SIZE -------------------- */
 
-db.animais.find({ descricao: { $size: 4 } }); // não tá pegando
+db.animais.find({ "descricao.predadores": { $size: 3 } });
 
 /* -------------------- 4. AGGREGATE -------------------- */
 
@@ -19,9 +19,7 @@ db.enderecos.aggregate([{$group : {_id : "$cidade", num_cidade : {$sum : 1}}}])
 
 /* -------------------- 5. MATCH -------------------- */
 
-db.animais.aggregate(
-    [{ $match : { tipo_animal:'Pinguim' } }]
-);
+db.animais.aggregate( [{ $match : { tipo_animal:'Pinguim' } }] );
 
 /* -------------------- 6. PROJECT -------------------- */
 
@@ -32,7 +30,7 @@ db.animais.aggregate( [ { $project : { descricao : { habitat: 1 } , idade : 1 } 
 // GTE ==  greater than or equal == >=
 // buscando animais com comprimento maior ou igual a 100 cm
 
-db.animais.find( { comprimento_cm: { $gte: 100 } } )
+db.animais.find( { comprimento_cm: { $gte: 100 } } );
 
 /* -------------------- 8. GROUP -------------------- */
 
@@ -68,28 +66,19 @@ db.funcionarios.aggregate([{ $group: { _id: null, count: { $avg: '$salario' }}}]
 
 // retornando funcionários que tem o tipo do cargo definido
 
-db.funcionarios.find( { tipo_cargo: { $exists: true }})
+db.funcionarios.find( { tipo_cargo: { $exists: true }});
 
 /* -------------------- 14. SORT -------------------- */
 
 // ordenando os funcionários pelo salário por ordem decrescente 
 
-db.funcionarios.aggregate(
-    [
-      { $sort : { salario : -1 } }
-    ]
- )
+db.funcionarios.aggregate( [ { $sort : { salario : -1 } } ] );
 
 /* -------------------- 15. LIMIT -------------------- */
 
 // obtendo os três animais mais pesados
 
-db.animais.aggregate(
-    [
-      { $sort : { peso_kg : -1 } },
-      { $limit : 3 }
-    ]
-);
+db.animais.aggregate( [ { $sort : { peso_kg : -1 } }, { $limit : 3 } ] );
 
 /* -------------------- 16. $WHERE -------------------- */
 
@@ -130,7 +119,7 @@ db.animais.aggregate(
 // retorna todos os animais que tem como predadores leões ou leopardos
 // não está funcionando
 
-db.ingressos.find( { descricao: { predadores: { $all: [  "leões", "leopardos"  ] } } } )
+db.animais.find( { "descricao.predadores": { $all: ["leões", "leopardos"] } } );
 
 /* -------------------- 21. SET -------------------- */
 
@@ -143,7 +132,8 @@ db.clientes.update(
             altura: 1.42
         }
     }
-)
+);
+
 /* -------------------- 22. TEXT -------------------- */
 
 // não está funcionando
@@ -191,6 +181,7 @@ db.animais.save({
 });
 
 /* -------------------- 27. RENAMECOLLECTION -------------------- */
+db.endereco.renameCollection('enderecos');
 
 /* -------------------- 28. COND -------------------- */
 

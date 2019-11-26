@@ -146,6 +146,21 @@ db.animais.find( { $text: { $search: "leões" } } );
 
 /* -------------------- 24. FILTER -------------------- */
 
+// tem que corrigir
+db.animais.aggregate([
+    {
+        $project: {
+            "descricao.predadores": {
+                $filter: {
+                    input: "$descricao.predadores",
+                    as: "predadores",
+                    cond: { $eq: ["hienas", "$$predadores"] }
+                }
+            }
+        }
+    }
+]);
+
 /* -------------------- 25. UPDATE -------------------- */
 
 // atualizando o peso de Glória
@@ -163,7 +178,7 @@ db.animais.update(
 /* -------------------- 26. SAVE -------------------- */
 
 db.animais.save({
-    nome: "Julien", 
+    nome: "Julienn", 
     tipo_animal:'Lêmure', 
     nome_cientifico:'Lemuriformes', 
     altura_cm: 57, 

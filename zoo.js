@@ -101,21 +101,94 @@ db.animais.find( { $where: "this.altura_cm > this.comprimento_cm" } );
 
 /* -------------------- 18. FUNCTION -------------------- */
 
+// faz a apresentação de um animal
+
+var showAnimal = function(key) {
+    var anm = db.animais.find( { _id: key } );
+    var animal = anm.next();
+    print (tojson(animal.nome) + " é um " + tojson(animal.tipo_animal) + " da espécie " + tojson(animal.nome_cientifico) + ".");
+    print("Ele tem " + tojson(animal.altura_cm) + " centímetros de altura, " + tojson(animal.comprimento_cm) + " centímetros de comprimento e " + tojson(animal.peso_kg) + " kilos.")
+}
+
+// para testar 
+
+showAnimal( ObjectId("5ddb8d1625e6201bc4ee387e"));
+
 /* -------------------- 19. PRETTY -------------------- */
+
+// obtendo os três animais mais pesados no formato json identado
+
+db.animais.aggregate(
+    [
+      { $sort : { peso_kg : -1 } },
+      { $limit : 3 }
+    ]
+).pretty();
 
 /* -------------------- 20. ALL -------------------- */
 
+// retorna todos os animais que tem como predadores leões ou leopardos
+// não está funcionando
+
+db.ingressos.find( { descricao: { predadores: { $all: [  "leões", "leopardos"  ] } } } )
+
 /* -------------------- 21. SET -------------------- */
 
+// inserindo a altura de um cliente aos seus dados
+
+db.clientes.update(
+    { nome : 'Nano Moura' },
+    {
+        $set: {
+            altura: 1.42
+        }
+    }
+)
 /* -------------------- 22. TEXT -------------------- */
 
+// não está funcionando
+
+db.clientes.createIndex( { subject: "email" } )
+db.clientes.find( { $text: { $search: "mal3@cin.ufpe.br" } } )
+
 /* -------------------- 23. SEARCH -------------------- */
+
+// não está funcionando
+
+db.animais.find( { $text: { $search: "leões" } } )
 
 /* -------------------- 24. FILTER -------------------- */
 
 /* -------------------- 25. UPDATE -------------------- */
 
+// atualizando o peso de Glória
+
+db.animais.update(
+    { nome : 'Glória' },
+    {
+        $set: {
+            peso_kg: 1835
+        }
+    }
+)
+
 /* -------------------- 26. SAVE -------------------- */
+
+db.animais.save({
+    nome: "Julien", 
+    tipo_animal:'Lêmure', 
+    nome_cientifico:'Lemuriformes', 
+    altura_cm: 57, 
+    comprimento_cm: 39, 
+    peso_kg: 2.1,
+    idade: 6,
+    descricao: {
+        habitat: 'Ilha de Madagascar',
+        alimentacao: ' insetos, pequenos vertebrados, frutas e flores',
+        predadores: ['fossa', 'Polyboroides radiatus', ' Buteo brachypterus'],
+        periodo_gestacao: 135
+    }
+});
 
 /* -------------------- 27. RENAMECOLLECTION -------------------- */
 

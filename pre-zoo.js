@@ -41,7 +41,7 @@ db.animais.insert({
     descricao: {
         habitat: 'Savanas Africanas',
         alimentacao: 'arbustos, folhas e galhos',
-        predadores: 'Leão, Geopardo e Crocodilo',
+        predadores: ['leões', 'leopardos', 'crocodilos'],
         periodo_gestacao: 365
     }
 });
@@ -57,7 +57,7 @@ db.animais.insert({
     descricao: {
         habitat: 'Savanas Semiáridas Africanas',
         alimentacao: 'folhas de árvores',
-        predadores: 'leões, hienas, leopardos, cachorros-selvagens e crocodilos',
+        predadores: ['leões', 'hienas', 'leopardos', 'cachorros-selvagens', 'crocodilos'],
         periodo_gestacao: 450
     }
 });
@@ -73,7 +73,7 @@ db.animais.insert({
     descricao: {
         habitat: 'Próximo de rios',
         alimentacao: 'Vegetações de rios e lagos',
-        predadores: 'Leão',
+        predadores: ['leões'],
         periodo_gestacao: 243
     }
 });
@@ -89,7 +89,7 @@ db.animais.insert({
     descricao: {
         habitat: 'Antártica e em águas frias circundantes',
         alimentacao: 'Pequenos peixes, krill e lulas,',
-        predadores: 'Orca, foca-leopardo e tubarões',
+        predadores: ['orcas', 'focas-leopardo', 'tubarões'],
         periodo_gestacao: 60
     }
 });

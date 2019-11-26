@@ -117,7 +117,6 @@ db.animais.aggregate(
 /* -------------------- 20. ALL -------------------- */
 
 // retorna todos os animais que tem como predadores leões ou leopardos
-// não está funcionando
 
 db.animais.find( { "descricao.predadores": { $all: ["leões", "leopardos"] } } );
 
@@ -137,21 +136,13 @@ db.clientes.update(
 
 /* -------------------- 22. TEXT -------------------- */
 
-// não está funcionando
-
-<<<<<<< HEAD
-db.clientes.createIndex( { subject: "email" } );
-db.clientes.find( { $text: { $search: "mal3@cin.ufpe.br" } } );
-=======
-db.clientes.createIndex( { email: "text" } )
-db.clientes.find( { $text: { $search: "mal3" } } )
->>>>>>> 0354197d8bcc9a35be933ebcdf9789576f7049d2
+db.clientes.createIndex( { email: "text" } );
+db.clientes.find( { $text: { $search: "mal3" } } );
 
 /* -------------------- 23. SEARCH -------------------- */
 
-// não está funcionando
-
-db.animais.find( { $text: { $search: "leões" } } )
+db.animais.createIndex( { "descricao.predadores": "text" } );
+db.animais.find( { $text: { $search: "leões" } } );
 
 /* -------------------- 24. FILTER -------------------- */
 
@@ -165,8 +156,9 @@ db.animais.update(
         $set: {
             peso_kg: 1835
         }
-    }
-)
+    },
+    { upsert: true }
+);
 
 /* -------------------- 26. SAVE -------------------- */
 

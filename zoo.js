@@ -126,20 +126,26 @@ db.animais.find( { "descricao.predadores": { $all: ["leões", "leopardos"] } } )
 // inserindo a altura de um cliente aos seus dados
 
 db.clientes.update(
-    { nome : 'Nano Moura' },
+    { nome : "Nano Moura" },
     {
         $set: {
             altura: 1.42
         }
-    }
+    },
+    { upsert: true }
 );
 
 /* -------------------- 22. TEXT -------------------- */
 
 // não está funcionando
 
+<<<<<<< HEAD
+db.clientes.createIndex( { subject: "email" } );
+db.clientes.find( { $text: { $search: "mal3@cin.ufpe.br" } } );
+=======
 db.clientes.createIndex( { email: "text" } )
 db.clientes.find( { $text: { $search: "mal3" } } )
+>>>>>>> 0354197d8bcc9a35be933ebcdf9789576f7049d2
 
 /* -------------------- 23. SEARCH -------------------- */
 

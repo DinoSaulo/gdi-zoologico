@@ -13,11 +13,7 @@ db.enderecos.find({ cidade: 'Pombos' });
 
 db.animais.find({ "descricao.predadores": { $size: 3 } });
 
-/* -------------------- 4. AGGREGATE -------------------- */
-
-db.enderecos.aggregate([{$group : {_id : "$cidade", num_cidade : {$sum : 1}}}])
-
-/* -------------------- 5. MATCH -------------------- */
+/* -------------------- 4. AGGREGATE e 5. MATCH -------------------- */
 
 db.animais.aggregate( [{ $match : { tipo_animal:'Pinguim' } }] );
 
@@ -34,9 +30,9 @@ db.animais.find( { comprimento_cm: { $gte: 100 } } );
 
 /* -------------------- 8. GROUP -------------------- */
 
-// agrupando os ingressos pelo seu tipo
+// agrupando as pessoas pelo seu tipo
 
-db.ingressos.aggregate( [ { $group: { _id: '$tipo', count: { $sum: 1 } } } ] );
+db.pessoas.aggregate( [ { $group: { _id: '$tipo', count: { $sum: 1 } } } ] );
 
 /* -------------------- 9. SUM -------------------- */
 
@@ -48,31 +44,31 @@ db.animais.aggregate([{ $group: { _id: null, count: { $sum: '$peso_kg' }}}]);
 
 // somando os salário de todos os funcionários
 
-db.funcionarios.aggregate([{ $group: { _id: null, count: { $sum: '$salario' }}}]);
+db.pessoas.aggregate([{ $group: { _id: null, count: { $sum: '$salario' }}}]);
 
 /* -------------------- 11. MAX -------------------- */
 
 // obtendo o maior salário de todos os funcionários
 
-db.funcionarios.aggregate([{ $group: { _id: null, count: { $max: '$salario' }}}]);
+db.pessoas.aggregate([{ $group: { _id: null, count: { $max: '$salario' }}}]);
 
 /* -------------------- 12. AVG -------------------- */
 
 // obtendo a média do salário dos funcionários
 
-db.funcionarios.aggregate([{ $group: { _id: null, count: { $avg: '$salario' }}}]);
+db.pessoas.aggregate([{ $group: { _id: null, count: { $avg: '$salario' }}}]);
 
 /* -------------------- 13. EXISTS -------------------- */
 
 // retornando funcionários que tem o tipo do cargo definido
 
-db.funcionarios.find( { tipo_cargo: { $exists: true }});
+db.pessoas.find( { tipo_cargo: { $exists: true }});
 
 /* -------------------- 14. SORT -------------------- */
 
 // ordenando os funcionários pelo salário por ordem decrescente 
 
-db.funcionarios.aggregate( [ { $sort : { salario : -1 } } ] );
+db.pessoas.aggregate( [ { $sort : { salario : -1 } } ] );
 
 /* -------------------- 15. LIMIT -------------------- */
 
@@ -124,7 +120,7 @@ db.animais.find( { "descricao.predadores": { $all: ["leões", "leopardos"] } } )
 
 // inserindo a altura de um cliente aos seus dados
 
-db.clientes.update(
+db.pessoas.update(
     { nome : "Nano Moura" },
     {
         $set: {
@@ -136,8 +132,8 @@ db.clientes.update(
 
 /* -------------------- 22. TEXT -------------------- */
 
-db.clientes.createIndex( { email: "text" } );
-db.clientes.find( { $text: { $search: "mal3" } } );
+db.pessoas.createIndex( { email: "text" } );
+db.pessoas.find( { $text: { $search: "mal3" } } );
 
 /* -------------------- 23. SEARCH -------------------- */
 
@@ -194,7 +190,7 @@ db.animais.save({
 });
 
 /* -------------------- 27. RENAMECOLLECTION -------------------- */
-db.endereco.renameCollection('enderecos');
+db.pessoas.renameCollection('pessoa');
 
 /* -------------------- 28. COND -------------------- */
 

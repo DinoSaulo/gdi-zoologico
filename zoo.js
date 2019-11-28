@@ -178,21 +178,29 @@ db.animais.find(
 );
 
 /* -------------------- 17. MAPREDUCE -------------------- */
+var mapFunction = function() {
+    emit(this._id, this.salario);
+};
+
+var reduceFunction = function(keyCustId, valuesPrices) {
+    return Array.sum(valuesPrices);
+};
+
+db.pessoas.mapReduce(
+    mapFunction,
+    reduceFunction,
+    { out: "Map Reduce" }
+);
 
 /* -------------------- 18. FUNCTION -------------------- */
 
-// faz a apresentação de um animal
-
-var showAnimal = function(key) {
-    var anm = db.animais.find( { _id: key } );
-    var animal = anm.next();
-    print (tojson(animal.nome) + " é um " + tojson(animal.tipo_animal) + " da espécie " + tojson(animal.nome_cientifico) + ".");
-    print("Ele tem " + tojson(animal.altura_cm) + " centímetros de altura, " + tojson(animal.comprimento_cm) + " centímetros de comprimento e " + tojson(animal.peso_kg) + " kilos.")
-}
-
-// para testar 
-
-showAnimal( ObjectId("5ddb8d1625e6201bc4ee387e"));
+db.pessoas.find (
+    { $where: function ()
+        {
+            return ((this.nome) == "Keanu Reeves")
+        }
+    }
+);
 
 /* -------------------- 19. PRETTY -------------------- */
 
@@ -255,7 +263,7 @@ db.animais.find(
     }
 );
 
-/* -------------------- 24. FILTER -------------------- */
+/* -------------------- 24. FILTER & 28. COND -------------------- */
 
 db.animais.aggregate([
     {
@@ -265,7 +273,7 @@ db.animais.aggregate([
                 $filter: {
                     input: "$descricao.predadores",
                     as: "predadores",
-                    cond: [ { $eq: ["hienas", "$$predadores"] }, "$$predadores", null ]
+                    cond: {$eq: ["$$predadores", "hienas"] }
                 }
             }
         }
@@ -310,21 +318,6 @@ db.animais.save(
 db.pessoas.renameCollection("pessoa");
 db.pessoa.renameCollection("pessoas");
 
-/* -------------------- 28. COND -------------------- */
-
-db.pessoas.aggregate(
-    [
-       { $project:
-            { nome: "$nome",
-              salario:
-                {
-                    $cond: { if: { $gte: [ "$salario", 998 ] }, then: "$salario", else: 998 }
-                }
-            }
-       }
-    ]
-).pretty();
-
 /* -------------------- 29. FINDONE -------------------- */
 
 db.pessoas.findOne (
@@ -332,3 +325,10 @@ db.pessoas.findOne (
 );
 
 /* -------------------- 30. ADDTOSET -------------------- */
+
+db.animais.update (
+    { "tipo_animal": "Zebra"},
+    { $addToSet: 
+        {"descricao.predadores": "hienas"}
+    }
+);

@@ -19,20 +19,20 @@ Atividade da disciplina Gerenciamento de dados e Informação - 2019.2 - Grupo 1
 | 14        | SORT      | ✅    |
 | 15        | LIMIT     | ✅    |
 | 16        | $WHERE    | ✅    |
-| 17        | MAPREDUCE | ❌    |
-| 18        | FUNCTION  | ❌    |
+| 17        | MAPREDUCE | ✅    |
+| 18        | FUNCTION  | ✅    |
 | 19        | PRETTY    | ✅    |
 | 20        | ALL       | ✅    |
 | 21        | SET       | ✅    |
 | 22        | TEXT      | ✅    |
 | 23        | SEARCH    | ✅    |
-| 24        | FILTER    | ❌    |
+| 24        | FILTER    | ✅    |
 | 25        | UPDATE    | ✅    |
 | 26        | SAVE      | ✅    |
 | 27        | RENAMECOLLECTION | ✅    |
-| 28        | COND      | ❌    |
+| 28        | COND      | ✅    |
 | 29        | FINDONE   | ✅    |
-| 30        | ADDTOSET  | ❌    |
+| 30        | ADDTOSET  | ✅    |
 
 ### Como executar
 

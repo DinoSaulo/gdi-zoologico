@@ -1,16 +1,9 @@
 /* -------------------- startando -------------------- */
 
-// usar um database com o nome zoologico, caso não tenha esse crie
-
-//use zoologico;
-
 // criando as collections
-//db = db.getSiblingDB("Zoologico");
+db = db.getSiblingDB("Zoologico");
 db.createCollection("animais");
 db.createCollection("pessoas");
-// db.createCollection("clientes");
-// db.createCollection("ingressos");
-// db.createCollection("endereco");
 
 // inserindo animais
 

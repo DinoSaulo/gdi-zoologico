@@ -257,20 +257,20 @@ db.animais.find(
 
 /* -------------------- 24. FILTER -------------------- */
 
-// tem que corrigir
 db.animais.aggregate([
     {
         $project: {
+            "nome":"$nome",
             "descricao.predadores": {
                 $filter: {
                     input: "$descricao.predadores",
                     as: "predadores",
-                    cond: { $eq: ["hienas", "$$predadores"] }
+                    cond: [ { $eq: ["hienas", "$$predadores"] }, "$$predadores", null ]
                 }
             }
         }
     }
-]);
+]).pretty();
 
 /* -------------------- 25. UPDATE -------------------- */
 
@@ -312,6 +312,23 @@ db.pessoa.renameCollection("pessoas");
 
 /* -------------------- 28. COND -------------------- */
 
+db.pessoas.aggregate(
+    [
+       { $project:
+            { nome: "$nome",
+              salario:
+                {
+                    $cond: { if: { $gte: [ "$salario", 998 ] }, then: "$salario", else: 998 }
+                }
+            }
+       }
+    ]
+).pretty();
+
 /* -------------------- 29. FINDONE -------------------- */
+
+db.pessoas.findOne (
+    { "nome": "Keanu Reeves" }
+);
 
 /* -------------------- 30. ADDTOSET -------------------- */

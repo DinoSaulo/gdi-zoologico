@@ -31,7 +31,7 @@ Atividade da disciplina Gerenciamento de dados e Informação - 2019.2 - Grupo 1
 | 26        | SAVE      | ✅    |
 | 27        | RENAMECOLLECTION | ✅    |
 | 28        | COND      | ❌    |
-| 29        | FINDONE   | ❌    |
+| 29        | FINDONE   | ✅    |
 | 30        | ADDTOSET  | ❌    |
 
 ### Como executar
